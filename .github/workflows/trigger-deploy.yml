@@ -1,0 +1,17 @@
+name: Trigger Blog Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+    notify:
+      runs-on: ubuntu-latest
+      steps:
+       - name: Trigger repository dispatch
+         uses: peter-evans/repository-dispatch@v3
+         with:
+          token: ${{ secrets.GH_PAT }}
+          repository: uesen389/my-blog-app
+          event-type: content_updated
